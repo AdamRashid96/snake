@@ -1,6 +1,7 @@
 float x,y,z;
 int direction = 1;
-int speed = 4;
+int speed = 1;
+float rotateSpeed = 0.05;
 void setup() {
   size(700, 600, P3D);
   background(230);
@@ -12,7 +13,7 @@ void setup() {
 void draw() {
   background(230);
   translate(x,y,z);
-  rotateY(z);
+  rotateY(z*rotateSpeed);
   rectMode(CENTER);
   rect(0,0,100,100);
   
