@@ -9,7 +9,7 @@ void setup() {
   size(700, 600, P3D);
   cursor(CROSS);
   background(230);
-  strokeWeight(5);
+  strokeWeight(1);
   x = width/2;
   y = height/2;
   z = 0;
@@ -17,13 +17,15 @@ void setup() {
 
 void draw() {
   background(230);
-  if (drawT == true) { 
-    rect(20, 20, 60, 20);
-    rect(39, 40, 22, 45);
-  }
-  header();
+  //drawHouse(width/2, height/2, 10, PI/2);
+  //drawT();
+  //header();
   cursor();
   rotatingSquare();
+  //lights();
+  //translate(58, 48, 0);
+  //sphere(28);
+
   if ((keyPressed == true) && (key == 'p'))
     noLoop();
 
@@ -47,19 +49,19 @@ void rotatingSquare() {
   rect(xAxis, yAxis, 100, 100);
 
   if ((keyPressed == true) && (key == 'a')) {  //Adjust Left
-    xAxis -= 3;
+    xAxis -= 6;
   }
 
   if ((keyPressed == true) && (key == 'd')) {  //Adjust Right
-    xAxis += 3;
+    xAxis += 6;
   }
 
   if ((keyPressed == true) && (key == 'w')) { //Adjust Up
-    yAxis -= 3;
+    yAxis -= 6;
   }
 
   if ((keyPressed == true) && (key == 's')) {  //Adjust Down
-    yAxis += 3;
+    yAxis += 6;
   }
 
   if (mouseButton == LEFT) {
@@ -84,7 +86,12 @@ void header() {
     rect(350, 0, 350, 300); // Right
   }
 }
-
+void drawT() {
+  if (drawT == true) { 
+    rect(20, 20, 60, 20);
+    rect(39, 40, 22, 45);
+  }
+}
 void keyPressed() {
   if ((key == 'T') || (key == 't')) {
     drawT = true;
@@ -93,4 +100,19 @@ void keyPressed() {
 
 void keyReleased() {
   drawT = false;
+}
+
+void drawHouse(int xcord, int ycord, float scale, float rotate) {
+  pushMatrix();
+  translate(xcord,ycord);
+  beginShape();
+  scale(scale);
+  rotate(rotate);
+  vertex(-10, 0);
+  vertex(-10, -10);
+  vertex(0, -20);
+  vertex(10, -10);
+  vertex(10, 0);
+  endShape(CLOSE);
+  popMatrix();
 }
