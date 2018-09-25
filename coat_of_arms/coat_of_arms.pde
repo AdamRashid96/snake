@@ -1,6 +1,7 @@
 int gameScreen = 0;
 float xAxis = 10;
 float yAxis = 10;
+int pauseValue = 0;
 float xdirection = 0;
 float ydirection = 0;
 float speed = 3;
@@ -109,7 +110,13 @@ void gameOverScreen() {
   text("Click to Restart", width/2, height-30);
   textSize(12);
   text("Return to home >", 60, 15);
-  
+
+  if (difficulty == 0.5)
+    text("Easy Mode", 640, 15);
+  if (difficulty == 1)
+    text("Medium Mode", 640, 15);
+  if (difficulty == 1.5)
+    text("Hard Mode", 640, 15);
   if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 30) {
     if (mousePressed) {
       returnHome();
@@ -119,7 +126,7 @@ void gameOverScreen() {
   } else {
     cursor(ARROW);
   }
-  
+
   if (mousePressed == true && (mouseX > 100 && mouseY > 30))
     restart();
 }
@@ -128,6 +135,7 @@ void startGame() {
   gameScreen=1;
 }
 void square() {
+  strokeWeight(2);
   fill(256, 0, 0);
   rect(xAxis, yAxis, 20, 20);
 }
@@ -156,6 +164,7 @@ void movingSquare() {
 }
 
 void apple() {
+  strokeWeight(2);
   fill(51, 255, 51);
   ellipse(appleX, appleY, 15, 15);
 }
@@ -197,7 +206,28 @@ void restart() {
   gameScreen = 1;
 }
 
-void returnHome(){
+void returnHome() {
   restart();
   gameScreen = 0;
+}
+
+void pause(){
+  noLoop();
+}
+
+void play(){
+  loop(); 
+}
+
+void keyPressed() {
+  if (gameScreen == 1 && (keyPressed == true) && (key == 'p') && pauseValue == 0) {
+    pause();
+    fill(52, 73, 94);
+    textSize(130);
+    text("Paused", width/2, height/2);
+    pauseValue = 1;
+  } else if(gameScreen == 1 && (keyPressed == true) && (key == 'p') && pauseValue == 1){
+    play();
+    pauseValue = 0;
+  }
 }
