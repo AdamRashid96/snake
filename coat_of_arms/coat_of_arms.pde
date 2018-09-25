@@ -10,6 +10,7 @@ int score = 0;
 int highscore = 0;
 float appleX = random(10, 690);
 float appleY = random(10, 590);
+
 void setup() {
   size(700, 600);
   cursor(CROSS);
@@ -19,7 +20,7 @@ void draw() {
   if (gameScreen == 0) {
     initScreen();
   } else if (gameScreen == 1) {
-    gameScreen();
+    drawGameScreen();
   } else if (gameScreen == 2) {
     gameOverScreen();
   }
@@ -39,8 +40,6 @@ void initScreen() {
   if (mouseX > width/2 - 240 && mouseX < width/2 - 160 && mouseY > height- 50 && mouseY < height) {
     if (mousePressed) {
       difficulty = 0.5;
-      println("Easy Mode");
-      println(difficulty);
       startGame();
     } else {
       cursor(HAND);
@@ -52,8 +51,6 @@ void initScreen() {
   if (mouseX > width/2 - 40 && mouseX < width/2 + 40 && mouseY > height- 50 && mouseY < height) {
     if (mousePressed) {
       difficulty = 1;
-      println("Medium Mode");
-      println(difficulty);
       startGame();
     } else {
       cursor(HAND);
@@ -65,8 +62,6 @@ void initScreen() {
   if (mouseX > width/2 + 160 && mouseX < width/2 + 240 && mouseY > height- 50 && mouseY < height) {
     if (mousePressed) {
       difficulty = 1.5;
-      println("Hard Mode");
-      println(difficulty);
       startGame();
     } else {
       cursor(HAND);
@@ -75,7 +70,7 @@ void initScreen() {
     cursor(CROSS);
   }
 }
-void gameScreen() {
+void drawGameScreen() {
   noCursor();
   background(255);
   border();
@@ -100,6 +95,7 @@ void gameOverScreen() {
   if (score > highscore) {
     highscore = score;
   }
+  textSize(12);
   text("Your Score", width/2, height/2 - 120);
   textSize(130);
   text(score, width/2, height/2);
