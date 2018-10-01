@@ -78,6 +78,7 @@ void drawGameScreen() {
   square();
   movingSquare();
   checkApple();
+  scoreBoard();
 
   if (xAxis > width - 20 || xAxis < 0) {
     gameOver();
@@ -213,6 +214,13 @@ void pause(){
 
 void play(){
   loop(); 
+}
+
+void scoreBoard(){
+  fill(52, 73, 94);
+  textSize(13);
+  text("Score:", 660, 20);
+  text(score, 685, 20);
 }
 
 void keyPressed() {
