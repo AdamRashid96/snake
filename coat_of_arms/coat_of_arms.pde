@@ -72,7 +72,8 @@ void initScreen() {
 }
 void drawGameScreen() {
   noCursor();
-  background(255);
+  fill(255, 40);
+  rect(0,0, width, height);
   border();
   apple();
   square();
@@ -209,6 +210,7 @@ void returnHome() {
 }
 
 void pause(){
+  background(255);
   noLoop();
 }
 
